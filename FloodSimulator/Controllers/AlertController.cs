@@ -8,8 +8,8 @@ namespace FloodSimulator.Controllers
     [Route("Alerts")]
     public class AlertController : ControllerBase
     {
-        private readonly AlertService _alertService;
-        public AlertController(AlertService alertService)
+        private readonly IAlertServices _alertService;
+        public AlertController(IAlertServices alertService)
         {
             _alertService = alertService;
         }
