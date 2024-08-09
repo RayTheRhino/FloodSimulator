@@ -39,7 +39,7 @@ namespace FloodSimulator.Services
             }
         }
 
-        public async Task<Alert> GetAlertByLocation(double lat, double lang)
+        public async Task<List<Alert>> GetAlertByLocation(string area)
         {
             try
             {
@@ -49,11 +49,10 @@ namespace FloodSimulator.Services
                     return null;
                 }
                 await _semaphore.WaitAsync();
-                var alerts = AllAlerts.Find(Alert => Alert.Lat == lat && Alert.Long == lang);
+                var alerts = AllAlerts.FindAll(Alert => Alert.Areas.Equals(area,StringComparison.OrdinalIgnoreCase));
                 if(alerts == null)
                 {
-                    Console.WriteLine("Invalid lat and log");
-                    return null;
+                    Console.WriteLine("Area not found");
                 }
                 
                 return alerts;

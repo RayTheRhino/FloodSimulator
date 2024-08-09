@@ -33,12 +33,12 @@ namespace FloodSimulator.Controllers
 
         [HttpGet]
         [Route("GetAlertByLocation")]
-        public async Task<IActionResult> GetAlertByLocation(double lat, double lang)
+        public async Task<IActionResult> GetAlertByLocation(string area)
         {
             try
             {
 
-                var alert = await _alertService.GetAlertByLocation(lat, lang);
+                var alert = await _alertService.GetAlertByLocation(area);
                 if(alert != null)
                 {
                     return Ok(alert);
